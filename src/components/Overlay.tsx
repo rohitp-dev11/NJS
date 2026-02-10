@@ -24,9 +24,9 @@ const Section = ({
     return (
         <motion.div
             style={{ opacity, y }}
-            className={`fixed top-0 left-0 w-full h-screen flex flex-col justify-start pt-28 pointer-events-none z-10 ${className}`}
+            className={`fixed top-0 left-0 w-full h-screen flex flex-col justify-start pt-20 md:pt-28 pointer-events-none z-10 overflow-y-auto ${className}`}
         >
-            <div className={`max-w-7xl mx-auto w-full px-6 flex flex-col ${alignmentClasses[align]}`}>
+            <div className={`max-w-7xl mx-auto w-full px-4 md:px-6 pb-8 flex flex-col ${alignmentClasses[align]}`}>
                 {children}
             </div>
         </motion.div>
@@ -36,9 +36,9 @@ const Section = ({
 export default function Overlay() {
     const { scrollYProgress } = useScroll();
 
-    // Section 1: Hero - fades out faster to match 300vh scroll
-    const opacity1 = useTransform(scrollYProgress, [0, 0.08, 0.12], [1, 1, 0]);
-    const y1 = useTransform(scrollYProgress, [0, 0.12], ["0%", "-20%"]);
+    // Section 1: Hero - stays visible while scrolling, fades near end of hero section
+    const opacity1 = useTransform(scrollYProgress, [0, 0.06, 0.1], [1, 1, 0]);
+    const y1 = useTransform(scrollYProgress, [0, 0.1], ["0%", "-10%"]);
 
 
 
@@ -50,7 +50,7 @@ export default function Overlay() {
                     <span className="text-xs font-medium text-purple-300 tracking-wider">AVAILABLE FOR CREATIVE DIRECTION</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tight mb-6">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white leading-tight tracking-tight mb-4 md:mb-6">
                     Crafting <br />
                     stories in <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
@@ -59,12 +59,12 @@ export default function Overlay() {
                     & line.
                 </h1>
 
-                <p className="max-w-xl text-lg text-gray-400 mb-8 leading-relaxed">
+                <p className="max-w-xl text-sm md:text-lg text-gray-400 mb-4 md:mb-8 leading-relaxed">
                     I&apos;m Neeraj S, a Freelance Video Editor and BCA student. I use my technical foundation to push the boundaries of visual storytelling, turning raw footage into cinematic experiences and ideas into digital reality.
                 </p>
 
-                <div className="flex flex-wrap gap-4 pointer-events-auto">
-                    <a href="#projects" className="px-8 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors">
+                <div className="flex flex-wrap gap-3 md:gap-4 pointer-events-auto">
+                    <a href="#projects" className="px-6 md:px-8 py-2.5 md:py-3 bg-white text-black text-sm md:text-base font-bold rounded-full hover:bg-gray-200 transition-colors">
                         Watch My Work
                     </a>
                     <a
@@ -78,17 +78,17 @@ export default function Overlay() {
                     </a>
                 </div>
 
-                <div className="mt-10 flex gap-12">
+                <div className="mt-6 md:mt-10 flex gap-6 md:gap-12">
                     <div>
-                        <h3 className="text-3xl font-bold text-white">50+</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">50+</h3>
                         <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">Cinematic Edits</p>
                     </div>
                     <div>
-                        <h3 className="text-3xl font-bold text-white">Aspiring</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">Aspiring</h3>
                         <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">Engineer</p>
                     </div>
                     <div>
-                        <h3 className="text-3xl font-bold text-white">BCA</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">BCA</h3>
                         <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">Student</p>
                     </div>
                 </div>
