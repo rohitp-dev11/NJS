@@ -21,7 +21,7 @@ export default function ScrollyCanvas() {
             const img = new Image();
             img.src = `/sequence/${i.toString().padStart(3, "0")}.webp`;
             img.onload = () => {
-                setLoadedCount((prev) => prev + 1);
+                setLoadedCount((prev: number) => prev + 1);
             };
             imgs.push(img);
         }
@@ -95,30 +95,34 @@ export default function ScrollyCanvas() {
         }
     }, [loadedCount, renderFrame, scrollYProgress]);
 
-    if (loadedCount < 90) {
-        return (
-            <div className="fixed inset-0 flex items-center justify-center bg-[#121212] z-50 text-white font-mono">
-                <div className="text-center">
-                    <div className="mb-4 text-2xl">Loading Experience...</div>
-                    <div className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-white transition-all duration-200 ease-out"
-                            style={{ width: `${(loadedCount / 90) * 100}%` }}
-                        />
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    const isLoading = loadedCount < 90;
 
     return (
-        <div ref={containerRef} className="h-[500vh] relative bg-[#121212]">
-            <div className="sticky top-0 h-screen w-full overflow-hidden">
-                <canvas
-                    ref={canvasRef}
-                    className="block w-full h-full"
-                />
+        <>
+            {/* Loading Overlay - sits on top but container is always rendered */}
+            {isLoading && (
+                <div className="fixed inset-0 flex items-center justify-center bg-[#121212] z-50 text-white font-mono">
+                    <div className="text-center">
+                        <div className="mb-4 text-2xl">Loading Experience...</div>
+                        <div className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-white transition-all duration-200 ease-out"
+                                style={{ width: `${(loadedCount / 90) * 100}%` }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Container is ALWAYS rendered so the ref is always hydrated */}
+            <div ref={containerRef} className="h-[500vh] relative bg-[#121212]">
+                <div className="sticky top-0 h-screen w-full overflow-hidden">
+                    <canvas
+                        ref={canvasRef}
+                        className="block w-full h-full"
+                    />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
