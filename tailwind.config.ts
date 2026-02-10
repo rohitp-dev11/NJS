@@ -9,8 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#121212",
+        foreground: "#ededed",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+        rotate: {
+          "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },
+          "100%": { transform: "translate(-50%, -50%) rotate(360deg)" },
+        },
+      },
+      animation: {
+        shine: "shine 1s",
+        rotate: "rotate 4s linear infinite",
       },
     },
   },
