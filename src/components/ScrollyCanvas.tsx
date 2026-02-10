@@ -115,7 +115,7 @@ export default function ScrollyCanvas() {
             )}
 
             {/* Container is ALWAYS rendered so the ref is always hydrated */}
-            <div ref={containerRef} className="h-[500vh] relative bg-[#121212]">
+            <div ref={containerRef} className="h-[300vh] relative bg-[#121212]">
                 <div className="sticky top-0 h-screen w-full overflow-hidden">
                     <canvas
                         ref={canvasRef}
