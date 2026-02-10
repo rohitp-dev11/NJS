@@ -40,13 +40,7 @@ export default function Overlay() {
     const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.2], [1, 1, 0]);
     const y1 = useTransform(scrollYProgress, [0, 0.2], ["0%", "-20%"]);
 
-    // Section 2: Narrative (25% - 45%)
-    const opacity2 = useTransform(
-        scrollYProgress,
-        [0.2, 0.25, 0.45, 0.5],
-        [0, 1, 1, 0]
-    );
-    const y2 = useTransform(scrollYProgress, [0.2, 0.5], ["20%", "-20%"]);
+
 
     return (
         <>
