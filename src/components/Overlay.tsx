@@ -36,9 +36,9 @@ const Section = ({
 export default function Overlay() {
     const { scrollYProgress } = useScroll();
 
-    // Section 1: Hero (0% - 20%)
-    const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.2], [1, 1, 0]);
-    const y1 = useTransform(scrollYProgress, [0, 0.2], ["0%", "-20%"]);
+    // Section 1: Hero - fades out faster to match 300vh scroll
+    const opacity1 = useTransform(scrollYProgress, [0, 0.08, 0.12], [1, 1, 0]);
+    const y1 = useTransform(scrollYProgress, [0, 0.12], ["0%", "-20%"]);
 
 
 
